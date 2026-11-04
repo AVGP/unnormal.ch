@@ -295,6 +295,88 @@ body::after {
   box-shadow: 0 0 12px var(--hazard-glow);
 }
 
+dialog {
+   position: fixed;
+  inset: 0;
+  margin: auto;
+  padding: 1rem;
+  width: 80vw;
+  max-width: 400px;
+  height: fit-content;
+  text-align: center;
+
+  &::backdrop {
+    background: hsl(0 0 0 / .5);
+    backdrop-filter: blur(5px);
+  }
+}
+
+button {
+  /* Layout & Typography */
+  display: inline-block;
+  padding: 12px 32px;
+  font-family: 'Courier New', Courier, monospace; /* Matches the site's terminal text */
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  
+  /* Color Palette matching unnormal.ch */
+  color: #ffffff;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  
+  /* Visual Positioning Mechanics */
+  position: relative;
+  transition: all 0.2s ease-in-out;
+  
+  /* The Sci-Fi Edge Cutout */
+  clip-path: polygon(
+    0 0, 
+    calc(100% - 12px) 0, 
+    100% 12px, 
+    100% 100%, 
+    12px 100%, 
+    0 calc(100% - 12px)
+  );
+}
+
+/* Tactical Corner Dots / Accents */
+button::before {
+  content: "■"; /* Matches the square accent used on unnormal.ch */
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 8px;
+  color: rgba(255, 255, 255, 0.6);
+  transition: all 0.2s ease-in-out;
+}
+
+/* Offset text slightly to account for the left icon square */
+button span {
+  padding-left: 14px;
+}
+
+/* Hover Interactive State */
+button:hover {
+  color: #000000;
+  background: #ffffff; /* Inverts color block dynamically */
+  border-color: #ffffff;
+  box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
+}
+
+button:hover::before {
+  color: #000000;
+}
+
+/* Active Pressed State */
+button:active {
+  transform: scale(0.97);
+}
+
 @keyframes pulse-beacon {
   0%, 100% {
     opacity: 1;
